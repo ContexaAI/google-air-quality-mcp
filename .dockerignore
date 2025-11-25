@@ -1,0 +1,9 @@
+# Ignore everything
+*
+
+# Except these files needed for Docker build
+!cmd/
+!internal/
+!go.mod
+!go.sum
+!.env.example

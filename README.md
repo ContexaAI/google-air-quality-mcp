@@ -67,6 +67,50 @@ GOOGLE_AIR_QUALITY_API_KEY=AIzaSyD...your-key-here
 
 > **Note**: The Air Quality API may require billing to be enabled on your Google Cloud project. Check the [pricing page](https://developers.google.com/maps/documentation/air-quality/usage-and-billing) for details.
 
+## Docker Deployment
+
+### Using Docker
+
+**Build the image:**
+```bash
+docker build -t google-air-quality-mcp .
+```
+
+**Run the container:**
+```bash
+docker run -d \
+  -p 8080:8080 \
+  -e GOOGLE_AIR_QUALITY_API_KEY=your_api_key_here \
+  --name air-quality-mcp \
+  google-air-quality-mcp
+```
+
+### Using Docker Compose
+
+**Start the service:**
+```bash
+docker-compose up -d
+```
+
+**Stop the service:**
+```bash
+docker-compose down
+```
+
+**View logs:**
+```bash
+docker-compose logs -f
+```
+
+> **Note**: Make sure your `.env` file contains `GOOGLE_AIR_QUALITY_API_KEY` before running docker-compose.
+
+### Image Size
+
+The Docker image uses a multi-stage build with Alpine Linux, resulting in a lightweight image (~20MB):
+- **Build stage**: Uses `golang:1.21-alpine` to compile the binary
+- **Final stage**: Uses `alpine:latest` with only the compiled binary and CA certificates
+- **Security**: Runs as non-root user for enhanced security
+
 ## Usage
 
 ### Running the Server
