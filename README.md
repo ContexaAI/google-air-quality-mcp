@@ -106,8 +106,8 @@ docker-compose logs -f
 
 ### Image Size
 
-The Docker image uses a multi-stage build with Alpine Linux, resulting in a lightweight image (~20MB):
-- **Build stage**: Uses `golang:1.21-alpine` to compile the binary
+The Docker image uses a multi-stage build with Alpine Linux, resulting in a lightweight image (~54MB):
+- **Build stage**: Uses `golang:1.24-alpine` to compile the binary
 - **Final stage**: Uses `alpine:latest` with only the compiled binary and CA certificates
 - **Security**: Runs as non-root user for enhanced security
 
