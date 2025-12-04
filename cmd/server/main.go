@@ -18,7 +18,7 @@ func main() {
 	// Configure CORS
 	r.Use(cors.New(cors.Config{
 		AllowAllOrigins: true,
-		AllowHeaders:    []string{"Content-Type", "mcp-session-id"},
+		AllowHeaders:    []string{"*"},
 		ExposeHeaders:   []string{"mcp-session-id"},
 	}))
 
