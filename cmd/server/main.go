@@ -5,6 +5,7 @@ import (
 
 	"github.com/akshaygalande/google-air-quality-mcp/internal/config"
 	"github.com/akshaygalande/google-air-quality-mcp/internal/mcp"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 )
 
@@ -13,6 +14,14 @@ func main() {
 
 	// Initialize Gin
 	r := gin.Default()
+
+	// Configure CORS
+	r.Use(cors.New(cors.Config{
+		AllowAllOrigins: true,
+		AllowHeaders:    []string{"Content-Type", "mcp-session-id"},
+		ExposeHeaders:   []string{"mcp-session-id"},
+	}))
+
 	r.GET("/health", func(c *gin.Context) {
 		c.JSON(200, gin.H{
 			"message": "pong",
